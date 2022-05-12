@@ -1,8 +1,9 @@
 #!/bin/bash
 
-set -e
-
-nohup npm run start >/dev/null 2>&1 &
+set -m
+ 
+npm run start >/dev/null 2>&1 &
+NODE_PID=$!
 npm run e2e-test
-kill $!
-pkill -f gecko
+kill $NODE_PID
+pkill -f geckodriver
